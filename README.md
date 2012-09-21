@@ -78,7 +78,7 @@ the right text area. A transposed version
 of the notes will appear in the right text
 area box.
 
-===
+===<hr>
 
 
 Handleiding
