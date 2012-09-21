@@ -20,7 +20,7 @@ In this README.htm I provide the dutch Handleiding (=tutorial)
 original html-document that contains the JavaScript code (see
 folder Documents, file transposer.htm).
 
-But first: here's the tranlation of this Handleiding in English.
+But first: here's the translation of this Handleiding in English.
 
 Tutorial
 
