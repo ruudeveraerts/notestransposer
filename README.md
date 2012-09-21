@@ -82,6 +82,7 @@ area box.
 
 
 Handleiding
+
 Laatst was ik bezig met Lilypond, het geweldige 
 notenschrijfprogramma (compleet met midi-output) 
 dat noten die je ingeeft prachtig op papier zet. 
