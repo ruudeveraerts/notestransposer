@@ -3,20 +3,22 @@ README.md by Ruud Everaerts, about his Notestransposer
 Written 21 Sept 2012
 
 Hello everybody who is reading this. I am writing this
-because I'm trying to figure out how git and github.com
-are working. Some time ago I wrote some code in JavaScript
-to transpose musical notes, and published it on my website.
+because I'm trying to figure out git and github.com.
+I'm quite a newbie, and the best way to get to know
+this, is to plunge right in, I think.
 
+Some time ago I wrote some code in JavaScript
+to transpose musical notes, and published it on my website.
 Looking for some code to publish on my github-account, I found
 this code, and decided to provide it. I needed some selfwritten
 JavaScript code anyway, to get to know github better, and I think 
 this, maybe trivial piece of code, needed to be available as open 
-source code anyway.
+source code anyway. I'm glad to provide it.
 
 In this README.htm I provide the dutch Handleiding (=tutorial)
 (see bottom of the page) that can also be found in the
 original html-document that contains the JavaScript code (see
-folder Document, file transposer.htm).
+folder Documents, file transposer.htm).
 
 But first: here's the tranlation of this Handleiding in English.
 
@@ -24,17 +26,18 @@ Tutorial
 
 Some time ago I was working with Lilypond, this
 great program for writing musical notes (also
-providing output in MIDI-format). But mostly
+providing output in MIDI-format, but mostly
 known for transforming notes in ascii-style
-into pretty PDF sheets of music. A great tool
+into pretty PDF sheets of music). A great tool
 for writing professional sheet music, or, learning
-to read notes / sightreading/ prima vista reading.
+to read notes / sightreading/ prima vista reading,
+as was my intention at the time.
 Lilypond is a tool that plays the music you
 entered in ascii-style, or more correctly, creates
 the MIDI-file you can play to hear what you have
 written. A great way to teach yourself.
 
-I learned that this program has to possibility
+I learned that this program has the possibility
 to transpose notes. 
 A song in C can be played in E, just tell Lilypond
 to do so. But I found out, sometimes, according to
@@ -45,15 +48,22 @@ to transpose the given notes?
 
 Up till now, I haven't found a way how to accomplish
 this in Lilypond. But since we are talking a about
-ascii plain text here, I thought I might be possible
+ascii plain text here, I thought I might be able
 to write something in JavaScript that can do this
 for you.
 
-===
-How to use the HTML-page with JavaScript?
+I succeeded. I wrote the file you can find in
+this repository, called transposer.htm. This
+is a tutorial that tells you how to use it.
 
-It's easy. Select the melody-part from your
-Lilypond file. And copy it to the
+How to use the HTML-page?
+
+It's easy. 
+
+1. Select the melody-part from your
+Lilypond file.
+
+2. copy it to the
 text area on the left of the page.
 Just put the notes. c4 d8 g,4 a'2 are
 examples of notes in ascii-lilypond-style.
@@ -61,22 +71,24 @@ Make sure every note has a space before it.
 If the note is at the first position of a line,
 make sure you put a space in front of it.
 
-On the left, you'll see an option-box. Labeled
+3. On the left, you'll see an option-box. Labeled
 "Bron" (Dutch for "Source"). Select the
 note the song is in. (Select a Major Key.
 Musicians know, when the song is in Minor, what
 the Mayor equivalent is: Am -> C , Bm -> D 
-Dm -> F, C#m -> F and so on)
+Dm -> F, C#m -> E and so on)
 
-On the right, you'll see an option-box. Labeled
+4. On the right, you'll see an option-box, labeled
 "Doel" (Dutch for "Target"). Select the note
 you want the song to be in. Again, select the
 Mayor equivalent, if the song is in Minor.
 
-Then, click the button between the left and
+5. Then, click the button between the left and
 the right text area. A transposed version
 of the notes will appear in the right text
 area box.
+
+That's it!
 
 ===<hr>
 
@@ -98,8 +110,6 @@ maar wil je het in e zingen, dan kan dat. Bij
 Lilypond is het zelfs zo gemakkelijk gemaakt, dat 
 je dan alleen maar ervóór hoeft aan te geven in 
 welke hoogte je het uitgeprint wil hebben!
-
-
 
 Ideaal. Het past ook wel bij mijn filosofie dat 
 de kern van muziek eigenlijk een geraamte is, dat 
