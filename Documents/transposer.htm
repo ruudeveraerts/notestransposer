@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xml:lang="nl" dir="ltr" xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+<head> 
+ 
+ 
+<title> 
+Notes transposer</title> 
+ 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<meta name="description" content="hobbyruimte" /> 
+<meta name="keywords" content="Notes Transposer Lilypond source file fragment" /> 
+ 
+ 
+ 
+</head>
+<body> 
+ 
+
+<script type="text/javascript">
+document.getElementById('focusor').focus();	
+</script>
+
+
+<table width="800px">
+
+<tr>
+<td valign="top">
+<a name="focusor"></a>
+<h2>Lilypond Notes Transposer</h2><div class='entry'> 
+ 
+<script type="text/javascript"> 
+ 
+function naarnoot(getal){
+ 
+    if (getal == 1) {waarde = "c";}
+    if (getal == 2) {waarde = "cis";}
+    if (getal == 3) {waarde = "d";}
+    if (getal == 4) {waarde = "es";}
+    if (getal == 5) {waarde = "e";}
+    if (getal == 6) {waarde = "f";}
+    if (getal == 7) {waarde = "fis";}
+    if (getal == 8) {waarde = "g";}
+    if (getal == 9) {waarde = "as";}
+    if (getal == 10) {waarde = "a";}
+    if (getal == 11) {waarde = "bes";}
+    if (getal == 12) {waarde = "b";}
+    return waarde;
+}
+ 
+function bepaalwaarde(noot){
+ 
+    if (noot == "c") {waarde = 1;}
+    if (noot == "cis") {waarde = 2;}
+    if (noot == "d") {waarde = 3;}
+    if (noot == "dis") {waarde = 4;}
+    if (noot == "e") {waarde = 5;}
+    if (noot == "f") {waarde = 6;}
+    if (noot == "fis") {waarde = 7;}
+    if (noot == "g") {waarde = 8;}
+    if (noot == "gis") {waarde = 9;}
+    if (noot == "a") {waarde = 10;}
+    if (noot == "ais") {waarde = 11;}
+    if (noot == "b") {waarde = 12;}
+ 
+    if (noot == "des") {waarde = 2;}
+    if (noot == "es") {waarde = 4;}
+    if (noot == "ges") {waarde = 7;}
+    if (noot == "as") {waarde = 9;}
+    if (noot == "bes") {waarde = 11;}
+    return waarde;
+}
+ 
+function gevonden(hooiberg){
+ 
+ var helenoot = "";
+ 
+ var eerstenoot = hooiberg.search(/\s[a-g]/);
+ 
+ if (eerstenoot == -1)
+ {
+ }
+ else
+ {
+     var eerstechar = hooiberg.charAt(eerstenoot + 1);
+ 
+     helenoot = helenoot + eerstechar;
+ 
+     if ((hooiberg.charAt(eerstenoot + 2) == 'i') || hooiberg.charAt(eerstenoot + 2) == 'e'){
+        if (hooiberg.charAt(eerstenoot + 3) == 's'){
+            helenoot = helenoot + hooiberg.charAt(eerstenoot + 2) + hooiberg.charAt(eerstenoot + 3);
+        }
+     }
+ 
+     if ((hooiberg.charAt(eerstenoot + 2) == 's')){
+       helenoot = helenoot + hooiberg.charAt(eerstenoot + 2);
+     }
+ }
+ return helenoot;
+ 
+}
+ 
+function vertel(dit, van, naar, alles)
+{
+    var paknoot = dit;
+ 
+    var noot1 = van;
+    var transponeernaar = naar;
+    var interval = 0;
+    var moetworden = 0;
+ 
+    if ((bepaalwaarde(transponeernaar) - bepaalwaarde(noot1)) < 0)
+    {
+        interval = 12 - bepaalwaarde(noot1) + bepaalwaarde(transponeernaar);
+    }
+    else 
+    {
+        interval = bepaalwaarde(transponeernaar) - bepaalwaarde(noot1);
+    }
+ 
+ 
+ 
+    moetworden = bepaalwaarde(paknoot) + interval;
+ 
+    if (moetworden > 12)
+    {
+       moetworden = moetworden - 12;
+    }
+ 
+    var uitkomst = naarnoot(moetworden);
+
+    if (alles == "kruis")
+    {
+        if (uitkomst == "as") {uitkomst = "gis";}
+        if (uitkomst == "bes") {uitkomst = "ais";}
+        if (uitkomst == "des") {uitkomst = "cis";}
+        if (uitkomst == "es") {uitkomst = "dis";}
+        if (uitkomst == "ges") {uitkomst = "fis";}
+    }
+
+    if (alles == "mol")
+    {
+        if (uitkomst == "ais") {uitkomst = "bes";}
+        if (uitkomst == "cis") {uitkomst = "des";}
+        if (uitkomst == "dis") {uitkomst = "es";}
+        if (uitkomst == "fis") {uitkomst = "ges";}
+        if (uitkomst == "gis") {uitkomst = "as";}
+    }
+
+ 
+    return (uitkomst);
+}
+ 
+</script> 
+ 
+ 
+ 
+ 
+<script language="javascript" type="text/javascript"> 
+ 
+function replacefirst(inputtekst, van, naar)
+{
+  var alles = "mol";
+  if (naar == "g" || naar == "d" || naar == "a" 
+      || naar == "e" || naar == "b"
+      || naar == "fis")  { alles = "kruis";}
+  if (naar == "f" || naar == "bes" || naar == "es" 
+      || naar == "as" || naar == "des" 
+      || naar == "ges") { alles = "mol";}
+ 
+  var extralengte = (gevonden(inputtekst)).length;
+  var tekstmeteerstevervangen = "";
+ 
+    if (gevonden(inputtekst) == "")
+    {
+       tekstmeteerstevervangen = inputtekst;
+    }
+    else
+    {
+        var totditpunt = inputtekst.search(" " + gevonden(inputtekst));
+        tekstmeteerstevervangen = inputtekst.substring(0, totditpunt)
+                                  + " " + vertel(gevonden(inputtekst), van, naar, alles)
+        + replacefirst(inputtekst.substring(totditpunt + 1 + extralengte), van, naar);
+ 
+    }
+ 
+    return tekstmeteerstevervangen;
+ 
+}
+ 
+ 
+function addtext() {
+ 
+    var newtext = document.myform.inputtext.value;
+ 
+ 
+    document.myform.outputtext.value = replacefirst(newtext, document.hoogtes.bron.value, document.hoogtes.doel.value);
+ 
+       
+}
+</script> 
+
+<p></p>
+
+ 
+<form name="hoogtes"> 
+<table><tr><td>Bron:</td><td> 
+<select name="bron"> 
+<option>f
+<option>fis
+<option>ges
+<option>g
+<option>as
+<option>a
+<option>bes
+
+<option>b
+<option>c
+<option>des
+<option>d
+<option>es
+<option>e
+</select> 
+</td> 
+<td>Doel:</td><td> 
+<select name="doel"> 
+<option>c
+<option>des
+<option>d
+<option>es
+<option>e
+<option>f
+
+<option>fis
+<option>ges
+<option>g
+<option>as
+<option>a
+<option>bes
+<option>b
+</select> 
+</td> 
+</tr> 
+</form> 
+ 
+ 
+<form name="myform"> 
+<table><tr> 
+<td><textarea name="inputtext" rows="30" cols="30"> 
+ c4 a'4 a4 a4 c,4 a'4 a4 a4
+ c,4 a'4 a4 a4 a4 bes4 g4 g8 g8
+ c,4 g'4 g4. g8 c,4 g'4 g2
+ d'4. c8  bes4 e,4 g4 f8 f8 f2
+ 
+</textarea></td> 
+<td valign="top"> 
+<input type="button" value=">>" onClick="addtext();"> 
+
+</td> 
+<td><textarea name="outputtext" rows="30" cols="30"></textarea></td> 
+</tr></table> 
+</form>
+
+
+
+ 
+ 
+
+
+<p>
+<b>Handleiding</b><br />
+Laatst was ik bezig met Lilypond, het geweldige notenschrijfprogramma (compleet met midi-output) dat noten die je ingeeft prachtig op papier zet. Ideaal voor het professioneel vervaardigen van bladmuziek, of, waar ik het voor gebruikte, om noten te leren lezen. Leuk als je door de midi-output meteen kan terughoren hoe je zelf had moet bedenken hoe het zou moeten klinken.<br />
+<br />
+Ik ontdekte dat het programma je ook helpt bij het transponeren van muziek. Staat het stuk in c, maar wil je het in e zingen, dan kan dat. Bij Lilypond is het zelfs zo gemakkelijk gemaakt, dat je dan alleen maar erv&oacute;&oacute;r hoeft aan te geven in welke hoogte je het uitgeprint wil hebben!<br />
+<br />
+Ideaal. Het past ook wel bij mijn filosofie dat de kern van muziek eigenlijk een geraamte is, dat door arrangeurs en instrumentalisten verder ingekleurd wordt.<br />
+<br />
+Maar hier ging Lilypond me eigenlijk te snel. Stel dat ik de notenpartij zelf wil transponeren naar een bepaalde hoogte. Dus niet de output in midi of in pdf, maar de onderliggende partij. Het lijkt me eigenlijk wel ideaal om alle muziek in c te hebben, en dan zelf per geval te exporteren naar de hoogte die op dat moment nodig is. Ook leuk voor vergelijkend muziekonderzoek, bedenk ik me nu...<br />
+<br />
+Het kan bijna niet anders of Lilypond heeft daar ergens een module voor, maar ik vond hem niet. Ik besloot zelf wat in JavaScript in elkaar te zetten.<br />
+<br />
+Een muziekkenner zal er wel van gruwen. Snap nog steeds niet de zin van een beses = enharmonisch gelijk aan een a, of het verschil tussen een fis en een ges. Wat enharmonisch gelijk is, is in mijn systeem gewoon helemaal gelijk. En ik vertaal naar de namen die ik het meeste tegenkom. Dus liever een bes dan een ais, liever een cis dan een des, liever een es dan een dis, bij gis en as kies ik voor as, al weet ik niet waarom.<br />
+<br />
+<b>Hoe gebruik je deze pagina?</b><br />
+De handleiding is eenvoudig: selecteer het melodiestukje uit de lilypond-file (bijvoorbeeld voorbeeld.ly). Alleen de nootjes, niet het relative of key gedoe vooraf. Kopieer dat in het vakje hierboven. (Bij het starten staat daar het notenfragment van het volksliedje "Berend Botje", als voorbeeld. Vervang die tekst dus). O, en hou in de gaten: een noot wordt voorafgegaan door een spatie. Dus begin iedere regel met een spatie.<br />
+<br />
+Geef linksboven (bij Bron) aan in welke hoogte dit bronbestand staat. (Berend Botje staat in f). Geef daarnaast (bij Doel) aan naar welke hoogte het liedje getransponeerd moet worden.<br />
+<br />
+Dan klikken op de toets met het pijltje, en voila. Wellicht dat het scriptje iemand tot nut zal zijn. 
+</p>
+<p>
+<b>UPDATE</b><br />
+Nou, nog niet helemaal perfect, maar toch een verbetering: als de doelhoogte g d a e b of fis is, worden zwarte toetsen genoteerd met een kruis, als de doelhoogte f, bes, es, as, des of ges is, worden zwarte toetsen genoteerd met een mol.</p>
+
+</td>
+
+</table>
+
+</body>
+</html> 
+
+
+
